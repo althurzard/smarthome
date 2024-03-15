@@ -17,6 +17,12 @@ jobs:
       - uses: actions/checkout@master
       - name: Microsoft Teams Notification
         uses: skitionek/notify-microsoft-teams@master
+        if: always()
         with:
           webhook_url: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          overwrite: "{title: `hello`}"
+          raw: >-
+            {
+              "@type": "MessageCard",
+              "@context": "http://schema.org/extensions",
+              "title": "No avaliable in here"
+            }
