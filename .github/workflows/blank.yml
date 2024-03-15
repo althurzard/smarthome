@@ -19,9 +19,4 @@ jobs:
         uses: skitionek/notify-microsoft-teams@master
         with:
           webhook_url: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          raw: >-
-            {
-              "@type": "MessageCard",
-              "@context": "http://schema.org/extensions",
-              "title": "Hello there"
-            }
+          overwrite: "{title: `hello`}"
