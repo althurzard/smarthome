@@ -25,6 +25,15 @@ jobs:
           steps: ${{ toJson(steps) }}
           dry_run: True
 
+  send_messages:
+      name: send message to MS Team
+      runs-on: ubuntu-latest
+      steps:
+      - uses: neonidian/teams-notify-build-status@v3
+        with:
+          webhookUrl: ${{ secrets.TEAMS_WEBHOOK_URL }}   # Secret name is "TEAMS_INCOMING_WEBHOOK_URL"
+          message: Workflow run passed !!
+
 
   without_optional_params:
     name: One with little info
