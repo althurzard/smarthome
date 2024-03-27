@@ -20,12 +20,12 @@ jobs:
 
     - name: Send email
       env:
-        SMTP_SERVER: smtp.gmail.com
+        SMTP_SERVER: smtp.office365.com
         SMTP_PORT: 587
-        SMTP_USERNAME: althurzard@gmail.com
-        SMTP_PASSWORD: ambk qnae fgvk otfr
+        SMTP_USERNAME: vuong.nguyen@orthian.vn
+        SMTP_PASSWORD: TZ4ia9.-t5z-md2
         EMAIL_TO: 773b27e0.orthian.vn@apac.teams.ms
-        EMAIL_FROM: althurzard@gmail.com
+        EMAIL_FROM: vuong.nguyen@orthian.vn
       run: |
         python - <<EOF
         import smtplib
