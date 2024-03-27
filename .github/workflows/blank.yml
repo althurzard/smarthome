@@ -18,10 +18,6 @@ jobs:
       with:
         python-version: '3.x'  # Choose Python version
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-
     - name: Send email
       env:
         SMTP_SERVER: smtp.gmail.com
@@ -31,9 +27,18 @@ jobs:
         EMAIL_TO: 773b27e0.orthian.vn@apac.teams.ms
         EMAIL_FROM: althurzard@gmail.com
       run: |
-        echo "Subject: Your subject here" > message.txt
-        echo "Your email body here" >> message.txt
-        echo "" >> message.txt
-        echo "Best regards," >> message.txt
-        echo "Your Name" >> message.txt
-        cat message.txt | sendmail -v -S $SMTP_SERVER:$SMTP_PORT -xu $SMTP_USERNAME -xp $SMTP_PASSWORD -f $EMAIL_FROM $EMAIL_TO
+        python - <<EOF
+        import smtplib
+        from email.message import EmailMessage
+        
+        msg = EmailMessage()
+        msg['Subject'] = 'Your subject here'
+        msg['From'] = '$EMAIL_FROM'
+        msg['To'] = '$EMAIL_TO'
+        msg.set_content('Your email body here\n\nBest regards,\nYour Name')
+        
+        with smtplib.SMTP('$SMTP_SERVER', $SMTP_PORT) as smtp:
+            smtp.starttls()
+            smtp.login('$SMTP_USERNAME', '$SMTP_PASSWORD')
+            smtp.send_message(msg)
+        EOF
