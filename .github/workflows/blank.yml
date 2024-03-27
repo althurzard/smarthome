@@ -16,5 +16,5 @@ jobs:
       steps:
       - uses: neonidian/teams-notify-build-status@v3
         with:
-          webhookUrl: https://prod-01.southeastasia.logic.azure.com:443/workflows/275aae3f04604b3e81172a96d9928417/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9m2RDjxfZUSMPxTQT7RrTSdpQKuXjl8pSOwgnbYzod8   # Secret name is "TEAMS_INCOMING_WEBHOOK_URL"
+          webhookUrl: https://prod-56.southeastasia.logic.azure.com:443/workflows/8a27a0aa989b429da25370e3798997bc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=krUcEAROXdzxXrQEw9gsTdd9FGjzaMM1ZH89pTK0sVc   # Secret name is "TEAMS_INCOMING_WEBHOOK_URL"
           message: Workflow run passed test abcsds !!
