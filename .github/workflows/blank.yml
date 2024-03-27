@@ -1,20 +1,40 @@
-# This is a basic workflow to help you get started with Actions
+name: Send Email
 
-name: CI
-
-# Controls when the workflow will run
 on:
   push:
     branches:
-      - main
+      - main  # Adjust branch as needed
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  send_messages:
-      name: send message to MS Team
-      runs-on: ubuntu-latest
-      steps:
-      - uses: neonidian/teams-notify-build-status@v3
-        with:
-          webhookUrl: https://prod-56.southeastasia.logic.azure.com:443/workflows/8a27a0aa989b429da25370e3798997bc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=krUcEAROXdzxXrQEw9gsTdd9FGjzaMM1ZH89pTK0sVc   # Secret name is "TEAMS_INCOMING_WEBHOOK_URL"
-          message: Workflow run passed test abcsds !!
+  send_email:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # - name: Set up Python
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: '3.x'  # Choose Python version
+
+    # - name: Install dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install -r requirements.txt  # Assuming you have requirements.txt with necessary packages
+
+    - name: Send email
+      env:
+        SMTP_SERVER: smtp.gmail.com
+        SMTP_PORT: 587
+        SMTP_USERNAME: althurzard@gmail.com
+        SMTP_PASSWORD: Quocvuong@1993
+        EMAIL_TO: 773b27e0.orthian.vn@apac.teams.ms
+        EMAIL_FROM: althurzard@gmail.com
+      run: |
+        echo "Subject: Your subject here" > message.txt
+        echo "Your email body here" >> message.txt
+        echo "" >> message.txt
+        echo "Best regards," >> message.txt
+        echo "Your Name" >> message.txt
+        cat message.txt | sendmail -v -S $SMTP_SERVER:$SMTP_PORT -xu $SMTP_USERNAME -xp $SMTP_PASSWORD -f $EMAIL_FROM $EMAIL_TO
