@@ -23,7 +23,7 @@ jobs:
         SMTP_SERVER: smtp.gmail.com
         SMTP_PORT: 587
         SMTP_USERNAME: althurzard@gmail.com
-        SMTP_PASSWORD: Quocvuong@1993
+        SMTP_PASSWORD: ambk qnae fgvk otfr
         EMAIL_TO: 773b27e0.orthian.vn@apac.teams.ms
         EMAIL_FROM: althurzard@gmail.com
       run: |
