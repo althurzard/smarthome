@@ -12,33 +12,40 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
+      
+    - name: Send custom JSON data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        python-version: '3.x'  # Choose Python version
-
-    - name: Send email
+            # For posting a rich message using Block Kit
+        payload: |
+          {  
+          "text": "PITO Partner Staging has built successully",
+          "attachments": [
+          {
+            "pretext": "Android App",
+            "color": "28a745",
+            "fields": [
+              {
+                "title": "Status",
+                "short": true,
+                "value": "Completed"
+              }
+            ]
+          }, 
+           {
+            "pretext": "iOS App",
+            "color": "28a745",
+            "fields": [
+              {
+                "title": "Status",
+                "short": true,
+                "value": "Completed"
+              }
+            ]
+          }
+          ]
+          }
       env:
-        SMTP_SERVER: smtp.office365.com
-        SMTP_PORT: 587
-        SMTP_USERNAME: vuong.nguyen@orthian.vn
-        SMTP_PASSWORD: TZ4ia9.-t5z-md2
-        EMAIL_TO: 773b27e0.orthian.vn@apac.teams.ms
-        EMAIL_FROM: vuong.nguyen@orthian.vn
-      run: |
-        python - <<EOF
-        import smtplib
-        from email.message import EmailMessage
-        
-        msg = EmailMessage()
-        msg['Subject'] = 'Your subject here'
-        msg['From'] = '$EMAIL_FROM'
-        msg['To'] = '$EMAIL_TO'
-        msg.set_content('Your email body here\n\nBest regards,\nYour Name')
-        
-        with smtplib.SMTP('$SMTP_SERVER', $SMTP_PORT) as smtp:
-            smtp.starttls()
-            smtp.login('$SMTP_USERNAME', '$SMTP_PASSWORD')
-            smtp.send_message(msg)
-        EOF
+          SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
