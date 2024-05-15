@@ -20,32 +20,21 @@ jobs:
             # For posting a rich message using Block Kit
         payload: |
           {  
-          "text": "PITO Partner Staging has built successully",
-          "attachments": [
-          {
-            "pretext": "Android App",
-            "color": "28a745",
-            "fields": [
-              {
-                "title": "Status",
-                "short": true,
-                "value": "Completed"
-              }
+            "text": "PITO Partner Staging has built successully",
+            "attachments": [
+            {
+              "pretext": "Android App",
+              "color": "28a745",
+              "fields": [
+                {
+                  "title": "Status",
+                  "short": true,
+                  "value": "Completed"
+                }
+              ]
+            }
             ]
-          }, 
-           {
-            "pretext": "iOS App",
-            "color": "28a745",
-            "fields": [
-              {
-                "title": "Status",
-                "short": true,
-                "value": "Completed"
-              }
-            ]
-          }
-          ]
           }
       env:
-          SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
