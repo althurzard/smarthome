@@ -1,25 +1,20 @@
-name: Send Email
+name: Slack Notification
 
-on:
-  push:
-    branches:
-      - main  # Adjust branch as needed
+on: [push]
 
 jobs:
-  send_email:
+  notify:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: Send custom JSON data to Slack workflow
-      id: slack
-      uses: slackapi/slack-github-action@v1.26.0
+
+    - name: Send Slack Notification
+      uses: slackapi/slack-github-action@v1.23.0
       with:
-            # For posting a rich message using Block Kit
         payload: |
-           {
+          {
             "text": "*${{ github.repository }} - New Commit*",
             "attachments": [
               {
