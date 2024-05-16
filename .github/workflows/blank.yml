@@ -10,38 +10,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Send Slack Notification
-      uses: slackapi/slack-github-action@v1.23.0
-      with:
-        payload: |
-          {
-            "text": "*${{ github.repository }} - New Commit*",
-            "attachments": [
-              {
-                "color": "#36a64f",
-                "title": "New commit in ${{ github.repository }}",
-                "text": "A new commit has been pushed to the repository.",
-                "fields": [
-                  {
-                    "title": "Commit Message",
-                    "value": "${{ github.event.head_commit.message }}",
-                    "short": false
-                  },
-                  {
-                    "title": "Author",
-                    "value": "${{ github.event.head_commit.author.name }}",
-                    "short": true
-                  },
-                  {
-                    "title": "Commit URL",
-                    "value": "${{ github.event.head_commit.url }}",
-                    "short": true
-                  }
-                ],
-                "footer": "GitHub Actions",
-                "ts": "$(date +%s)"
-              }
-            ]
-          }
+    - name: Slack Notification
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_TITLE: Post Title
+        SLACK_USERNAME: rtCamp
