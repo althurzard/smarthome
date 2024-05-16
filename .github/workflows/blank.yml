@@ -21,22 +21,14 @@ jobs:
         payload: |
           {  
             "text": "PITO Partner Staging has built successully",
-            "attachments": [
-            {
-              "pretext": "Android App",
-              "color": "28a745",
-              "fields": [
-                 {
-              title: "Build number",
-              value: "asdadasdadas",
-            },
-            {
-              title: "App is being processed by Testflight",
-              value: "A waiting time of approximately for at least 5 minutes... It will notify your email when the process is completed",
-              short: true
+             "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
             }
-              ]
-            }
+          }
             ]
           }
       env:
