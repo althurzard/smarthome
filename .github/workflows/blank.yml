@@ -26,14 +26,18 @@ jobs:
               "pretext": "Android App",
               "color": "28a745",
               "fields": [
-                {
-                  "title": "Status",
-                  "short": true,
-                  "value": "Completed"
-                }
+                 {
+              title: "Build number",
+              value: "asdadasdadas",
+            },
+            {
+              title: "App is being processed by Testflight",
+              value: "A waiting time of approximately for at least 5 minutes... It will notify your email when the process is completed",
+              short: true
+            }
               ]
             }
             ]
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
